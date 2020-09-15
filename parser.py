@@ -23,9 +23,9 @@ def get_content(html):
             old_price = ''#если нет, ничего не берем
         products.append({ #создаем библиотеку
             'title': item.find('span', class_='promo_name').get_text(), #находим заголовок
+            'price': item.find('p', class_='price_total').get_text().replace('.-', '').replace('\n', ''), #находим цену
             'description': item.find('p', class_='mar-0 f-13').get_text(), #находим описание
             'link_img': HOST + item.find('img', class_='img-responsive imgpspecial').get('src'), #находим урл фотки и добавляем хост для кликабельности
-            'price': item.find('p', class_='price_total').get_text().replace('.-', '').replace('\n', ''), #находим цену
             'old_price': old_price, #находим старую цену
         })
     print(products) #печатаем все что нашли
